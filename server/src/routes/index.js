@@ -8,6 +8,7 @@ import authRouters from "./auth.routes.js";
 import BarbersRouter from "./barbers.routes.js";
 import ServicesRouter from "./services.routes.js";
 import ClientesRouter from "./clientes.routes.js";
+import AppointmentRouter from "./appoinment.routes.js";
 
 const router = Router();
 
@@ -18,6 +19,7 @@ router.use("/auth", authRouters);
 router.use("/barbers", BarbersRouter);
 router.use("/services", ServicesRouter);
 router.use("/clientes", ClientesRouter);
+router.use("/citas", AppointmentRouter);
 
 router.get("/test", async (req, res) => {
   try {

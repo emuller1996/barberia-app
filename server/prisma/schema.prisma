@@ -21,29 +21,47 @@ model User {
 }
 
 model Barber {
-  id           String    @id @default(uuid())
+  id           String        @id @default(uuid())
   email        String
   name         String?
   number_phone String?
   title        String?
   img_url      String?
   services     Service[]
+  Appointment  Appointment[]
 }
 
 model Service {
-  id          String   @id @default(uuid())
+  id          String        @id @default(uuid())
   name        String?
   description String?
   price       Float?
   barbers     Barber[]
+  Appointment Appointment[]
 }
 
 model Client {
-  id           String   @id @default(uuid())
+  id           String        @id @default(uuid())
   name         String?
-  number_phone String?  @unique
+  number_phone String?       @unique
   address      String?
   password     String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  Appointment  Appointment[]
+}
+
+model Appointment {
+  id         String    @id @default(uuid())
+  date       DateTime
+  time       String?
+  status     String?
+  date_start DateTime
+  date_end   DateTime
+  total      Decimal?
+  services   Service[]
+  client     Client?   @relation(fields: [clientId], references: [id])
+  clientId   String?
+  barber     Barber?   @relation(fields: [barberId], references: [id])
+  barberId   String
 }
