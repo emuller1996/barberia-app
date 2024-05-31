@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useServicios } from "../../hooks/useServicios";
 import FormService from "./components/FormService";
 import CardService from "./components/CardService";
-
+import MenuProductoServices from "../../components/_AppMenuProductoServices";
 export default function ServicePage() {
   const { data, getAllServicios, loading } = useServicios();
   const [serviceSelected, setServiceSelected] = useState(null);
@@ -16,6 +16,8 @@ export default function ServicePage() {
 
   return (
     <div className="container mx-auto">
+      <MenuProductoServices />
+
       <div className="grid gap-6 md:grid-cols-2">
         <div>
           <FormService

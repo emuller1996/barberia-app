@@ -3,11 +3,12 @@ import "./App.css";
 import HomePage from "./pages";
 import MainTemplate from "./templates/_MainTemplate";
 
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3000/";
 function App() {
   return (
     <>
       <BrowserRouter>
-
         <Routes>
           <Route path="/*" name="blue_login" element={<HomePage />} />
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getAllBarberService } from "../services/barbers.services";
-export const useBarbers = () => {
+import { getAllAppointmentService } from "../services/appointment.services";
+export const useCitas = () => {
   const [data, setData] = useState([]);
 
   const [error, setError] = useState(null);
@@ -9,16 +9,18 @@ export const useBarbers = () => {
   const abortController = new AbortController();
   const signal = abortController.signal;
 
-  const getAllBarbers = async () => {
+  const getAllCitas = async () => {
     setLoading(true);
+    setData([]);
     try {
-      const res = await getAllBarberService();
+      const res = await getAllAppointmentService();
       if (res.status !== 200) {
         let err = new Error("Error en la petición Fetch");
         err.status = res.status || "00";
         err.statusText = res.statusText || "Ocurrió un error";
         throw err;
       }
+      console.log(res);
 
       if (!signal.aborted) {
         setData(res.data);
@@ -26,7 +28,7 @@ export const useBarbers = () => {
       }
     } catch (error) {
       if (!signal.aborted) {
-       /*  setData(null); */
+        setData(null);
         setError(error);
       }
     } finally {
@@ -40,6 +42,6 @@ export const useBarbers = () => {
     data,
     error,
     loading,
-    getAllBarbers,
+    getAllCitas,
   };
 };

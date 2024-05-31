@@ -1,0 +1,25 @@
+.fc-theme-standard {
+
+    border: 1px solid rgb(132 225 188);
+    padding: 1em;
+    border-radius: 0.8em;
+}
+
+.fc-scrollgrid {
+    border: 1px solid rgb(132 225 188) !important;
+    border-radius: 0.8em;
+    overflow: hidden;
+
+}
+
+:root {
+    --fc-today-bg-color: rgb(132 225 188/0.2);
+
+    --fc-event-bg-color: #82e7bd;
+    --fc-event-border-color: #6fcab6;
+    --fc-event-text-color: #000000;
+}
+.react-select__input-container > input[type="text"]{
+    border: none !important;
+    box-shadow: none  !important;
+} 
