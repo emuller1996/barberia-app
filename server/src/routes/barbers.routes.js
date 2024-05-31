@@ -18,10 +18,13 @@ BarbersRouter.get("/", async (req, res) => {
 });
 
 BarbersRouter.post("/", validateCreate, async (req, res) => {
-  const services = req.body.services.map((c) => {
-    return { id: c };
-  });
-  console.log(services);
+  try {
+    var services = req.body.services.map((c) => {
+      return { id: c };
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
   try {
     const r = await prisma.barber.create({
       data: {
@@ -43,9 +46,13 @@ BarbersRouter.post("/", validateCreate, async (req, res) => {
 });
 
 BarbersRouter.patch("/:id", validateCreate, async (req, res) => {
-  const services = req.body.services.map((c) => {
-    return { id: c };
-  });
+  try {
+    var services = req.body.services.map((c) => {
+      return { id: c };
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
   //RESERT SERVICES
   try {
     const result = await prisma.barber.update({

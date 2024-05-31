@@ -14,6 +14,7 @@ AppointmentRouter.get("/", async (req, res) => {
     res.json(services);
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
   }
 });
 
@@ -52,21 +53,21 @@ AppointmentRouter.post("/", validateCreateAppointment, async (req, res) => {
 AppointmentRouter.patch("/:id", validateCreateAppointment, async (req, res) => {
   //RESERT SERVICES, BARBER AND CLIENTE
 
-  const ReqServices = req.body.services.map((c) => {
-    return {
-      id: c,
-    };
-  });
-
-  const idBarber = { id: req.body.barber_id };
-  var ClientData = {};
-
-  if (req.body.client_id) {
-    ClientData.client = { connect: { id: req.body.client_id } };
-  }
-  delete req.body.barber_id;
-  delete req.body.client_id;
   try {
+    const ReqServices = req.body.services.map((c) => {
+      return {
+        id: c,
+      };
+    });
+
+    const idBarber = { id: req.body.barber_id };
+    var ClientData = {};
+
+    if (req.body.client_id) {
+      ClientData.client = { connect: { id: req.body.client_id } };
+    }
+    delete req.body.barber_id;
+    delete req.body.client_id;
     const result = await prisma.appointment.update({
       where: {
         id: req.params.id,

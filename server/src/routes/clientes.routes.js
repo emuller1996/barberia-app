@@ -11,6 +11,8 @@ ClientesRouter.get("/", async (req, res) => {
     res.json(clientes);
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
+
   }
 });
 
@@ -23,6 +25,8 @@ ClientesRouter.post("/", validateCreateCliente, async (req, res) => {
     return res.status(201).json({ message: "Cliente Creado.", barber: r });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
+
   }
 });
 
@@ -36,6 +40,8 @@ ClientesRouter.patch("/:id", validateCreateCliente, async (req, res) => {
     return res.status(202).json({ message: "Cliente Actualizado.", barber: r });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
+
   }
 });
 

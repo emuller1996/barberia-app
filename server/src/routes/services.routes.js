@@ -12,6 +12,8 @@ ServicesRouter.get("/", async (req, res) => {
     res.json(services);
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
+
   }
 });
 
@@ -24,6 +26,8 @@ ServicesRouter.post("/", validateCreateService, async (req, res) => {
     return res.status(201).json({ message: "Servicio Creado.", barber: r });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
+
   }
 });
 
@@ -37,6 +41,8 @@ ServicesRouter.patch("/:id", validateCreateService, async (req, res) => {
     return res.status(202).json({ message: "Servicio Actualizado.", barber: r });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
+
   }
 });
 

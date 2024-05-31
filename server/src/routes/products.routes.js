@@ -12,6 +12,8 @@ ProductosRouter.get("/", async (req, res) => {
     res.json(services);
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
+
   }
 });
 
@@ -24,6 +26,8 @@ ProductosRouter.post("/", validateCreateProductos, async (req, res) => {
     return res.status(201).json({ message: "Producto Creado.", barber: r });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
+
   }
 });
 
@@ -39,6 +43,8 @@ ProductosRouter.patch("/:id", validateCreateProductos, async (req, res) => {
       .json({ message: "Producto Actualizado.", barber: r });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error.message });
+
   }
 });
 
