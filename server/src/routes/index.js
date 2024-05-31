@@ -9,7 +9,7 @@ import BarbersRouter from "./barbers.routes.js";
 import ServicesRouter from "./services.routes.js";
 import ClientesRouter from "./clientes.routes.js";
 import AppointmentRouter from "./appoinment.routes.js";
-
+import ProductosRouter from "./products.routes.js";
 const router = Router();
 
 // Configurar los routers
@@ -20,6 +20,7 @@ router.use("/barbers", BarbersRouter);
 router.use("/services", ServicesRouter);
 router.use("/clientes", ClientesRouter);
 router.use("/citas", AppointmentRouter);
+router.use("/productos", ProductosRouter);
 
 router.get("/test", async (req, res) => {
   try {

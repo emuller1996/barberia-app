@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index",
     "start": "node index",
-    "postinstall": "npx prisma generate"
+    "migratedb ": "npx prisma migrate dev",
+    "postinstall": "npx prisma migrate dev"
   },
   "author": "",
   "license": "ISC",
