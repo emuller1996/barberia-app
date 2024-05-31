@@ -4,7 +4,7 @@ import HomePage from "./pages";
 import MainTemplate from "./templates/_MainTemplate";
 
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3000/";
+axios.defaults.baseURL = "http://18.230.187.240:3000/";
 function App() {
   return (
     <>
