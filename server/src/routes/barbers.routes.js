@@ -1,5 +1,4 @@
 import { Router } from "express";
-import prisma from "../prismaClient.js";
 import { validateCreate } from "../validators/barber.validator.js";
 import {
   buscarElasticByType,

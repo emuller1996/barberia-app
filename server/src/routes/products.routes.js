@@ -1,5 +1,4 @@
 import { Router } from "express";
-import prisma from "../prismaClient.js";
 import { validateCreateProductos } from "../validators/producto.validator.js";
 import xlsx from "xlsx";
 

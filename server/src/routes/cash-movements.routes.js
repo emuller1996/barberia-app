@@ -1,5 +1,4 @@
 import { Router } from "express";
-import prisma from "../prismaClient.js";
 import { client } from "../ClienteElasticSearch.js";
 import { getDocumentById } from "../utils/index.js";
 

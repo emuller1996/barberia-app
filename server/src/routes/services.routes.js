@@ -1,5 +1,4 @@
 import { Router } from "express";
-import prisma from "../prismaClient.js";
 import { validateCreateService } from "../validators/services.validator.js";
 import { buscarElasticByType, crearElasticByType, updateElasticByType } from "../utils/index.js";
 

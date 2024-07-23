@@ -1,5 +1,4 @@
 import { Router } from "express";
-import prisma from "../prismaClient.js";
 import { validateCreateSales } from "../validators/sales.validar.js";
 import moment from "moment-timezone";
 import { crearElasticByType, getDocumentById, parseDateISO } from "../utils/index.js";
@@ -7,19 +6,8 @@ import { client } from "../ClienteElasticSearch.js";
 
 const InvoiceRouter = Router();
 
-/* InvoiceRouter.get("/", async (req, res) => {
-  try {
-    const invoices = await prisma.invoice.findMany({
-      include: { InvoiceDetail: { include: { product: true } }, client: true },
-    });
 
-    console.log(invoices);
-    res.json(invoices);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: error.message });
-  }
-}); */
+
 
 InvoiceRouter.get("/per_day/:date", async (req, res) => {
   try {

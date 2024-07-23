@@ -1,7 +1,5 @@
 import { Router } from "express";
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 import authRouters from "./auth.routes.js";
