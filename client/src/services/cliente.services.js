@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const postCreateClienteService = (data) => {
   return axios.post("/clientes", data);
 };
@@ -11,4 +10,8 @@ export const pachtUpdateClienteService = (data) => {
 
 export const getAllClienteService = (data) => {
   return axios.get("/clientes", data);
+};
+
+export const getValidateClienteService = (number) => {
+  return axios.get(`/clientes/validate/${number}`);
 };

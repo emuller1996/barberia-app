@@ -1,17 +1,35 @@
 import { Router } from "express";
 import prisma from "../prismaClient.js";
 import { validateCreateAppointment } from "../validators/appointment.validator.js";
+import { crearElasticByType, getDocumentById, updateElasticByType } from "../utils/index.js";
+import { client } from "../ClienteElasticSearch.js";
 
 const AppointmentRouter = Router();
 
 AppointmentRouter.get("/", async (req, res) => {
   try {
-    const services = await prisma.appointment.findMany({
-      include: { services: true, barber: true, client: true },
+    const result = await client.search({
+      index: "sistemabarberia", // Reemplaza con el nombre de tu índice
+      body: {
+        query: {
+          bool: {
+            must: [{ match: { type: "cita" } }],
+          },
+        },
+      },
     });
-
-    console.log(services);
-    res.json(services);
+    var citas = result.body.hits.hits;
+    citas = citas.map(async (c) => {
+      return {
+        ...c._source,
+        _id: c._id,
+        /*  serviciosData: c._source.services.map( async s => {
+              return await getDocumentById(s);
+            })  */
+      };
+    });
+    citas = await Promise.all(citas);
+    res.json(citas);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message });
@@ -21,29 +39,9 @@ AppointmentRouter.get("/", async (req, res) => {
 AppointmentRouter.post("/", validateCreateAppointment, async (req, res) => {
   try {
     console.log(req.body);
-    const services = req.body.services.map((c) => {
-      return { id: c };
-    });
-    var ClientData = {};
-    const idBarber = req.body.barber_id;
-    if (req.body.client_id) {
-      ClientData.client = { connect: { id: req.body.client_id } };
-    }
-    delete req.body.barber_id;
-    delete req.body.client_id;
+    await crearElasticByType(req.body, "cita");
 
-    console.log(req.body.services.map((c) => c));
-    const r = await prisma.appointment.create({
-      data: {
-        ...req.body,
-        status: "AGENDADA",
-        barber: { connect: { id: idBarber } },
-        services: { connect: services },
-        ...ClientData,
-      },
-    });
-
-    return res.status(201).json({ message: "Servicio Creado.", barber: r });
+    return res.status(201).json({ message: "Cita o Turno Creado." });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message });
@@ -96,19 +94,11 @@ AppointmentRouter.patch(
     try {
       const { date_start, date_end } = req.body;
 
-      const result = await prisma.appointment.update({
-        where: {
-          id: req.params.id,
-        },
-        data: {
-          date_start,
-          date_end,
-        },
-      });
-      console.log(result);
+      const r = await updateElasticByType(req.params.id,{ date_start:date_start, date_end:date_end })
+      
       return res
         .status(202)
-        .json({ message: "Cita Actualizado.", cita: result });
+        .json({ message: "Cita Actualizado.", cita: r });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: error.message });

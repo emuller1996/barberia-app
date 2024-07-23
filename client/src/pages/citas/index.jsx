@@ -189,7 +189,7 @@ export default function CitasPage() {
           eventChange={async (e) => {
             try {
               const r = await pachtUpdateDateAppointmentService({
-                id: e.event._def.extendedProps.citaData.id,
+                id: e.event._def.extendedProps.citaData._id,
                 date_start: parseIsoNose(e.event._instance.range.start),
                 date_end: parseIsoNose(e.event._instance.range.end),
               });

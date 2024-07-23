@@ -11,6 +11,7 @@ import { ViewDollar } from "../../../utils";
 import { useBarbers } from "../../../hooks/useBarbers";
 import Select from "react-select";
 import { useClientes } from "../../../hooks/useClientes";
+import FormCitaMoviminetoCaja from "./FormCitaMoviminetoCaja";
 
 export default function FormCita({ cita, onClose, getAllCitas }) {
   const { data, getAllServicios } = useServicios();
@@ -51,7 +52,7 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
     console.log(data);
 
     if (cita) {
-      data.id = cita.id;
+      data._id = cita._id;
       const r = await pachtUpdateAppointmentService(data);
       toast.success(r.data.message);
       onClose();
@@ -61,7 +62,6 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
         const r = await postCreateAppointmentService(data);
         toast.success(r.data.message);
         reset();
-        setValue("price", "");
         setConCliente(false);
         await getAllCitas();
       } catch (error) {
@@ -121,11 +121,11 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
                   clienteAll
                     .map((c) => {
                       return {
-                        value: c.id,
+                        value: c._id,
                         label: `${c?.name} - ${c?.number_phone}`,
                       };
                     })
-                    .find((c) => c?.value === cita?.client?.id)
+                    .find((c) => c?.value === cita?.client?._id)
                 }
                 styles={{
                   input: (baseStyles, state) => ({
@@ -137,7 +137,7 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
                 }}
                 options={clienteAll.map((c) => {
                   return {
-                    value: c.id,
+                    value: c._id,
                     label: `${c?.name} - ${c?.number_phone}`,
                   };
                 })}
@@ -152,7 +152,7 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
             <div className="mb-4">
               <label
                 htmlFor="date_start"
-                className="block mb-2 text-2xl text-gray-400 dark:text-white"
+                className="block mb-2   text-gray-400 dark:text-white"
               >
                 Fecha y Hora Inicio
               </label>
@@ -169,7 +169,7 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
                     10
                   )} ${cita?.date_start?.substring(11, 16)}`
                 }
-                className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:green-green-500"
+                className="bg-gray-50 border    border-gray-300 text-gray-900 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:green-green-500"
               />
               <small className="text-red-400 capitalize">
                 {errors?.name?.message}
@@ -179,7 +179,7 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
             <div className="mb-4">
               <label
                 htmlFor="date_end"
-                className="block mb-2 text-2xl text-gray-400 dark:text-white"
+                className="block mb-2    text-gray-400 dark:text-white"
               >
                 Fecha y Hora Fin
               </label>
@@ -196,7 +196,7 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
                     10
                   )} ${cita?.date_end.substring(11, 16)}`
                 }
-                className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:green-green-500"
+                className="bg-gray-50 border    border-gray-300 text-gray-900 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:green-green-500"
               />
               <small className="text-red-400 capitalize">
                 {errors?.name?.message}
@@ -210,24 +210,24 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
             </h3>
             <ul className="grid w-full gap-3 grid-cols-2 md:grid-cols-3">
               {listBarbers.map((s) => (
-                <li key={s.id}>
+                <li key={s._id}>
                   <input
                     type="radio"
-                    id={s.id}
-                    value={s.id}
+                    id={s._id}
+                    value={s._id}
                     className="hidden peer"
                     {...register("barber_id")}
                     defaultValue={cita?.barberId}
                     defaultChecked={
-                      cita && cita?.barberId === s.id ? true : false
+                      cita && cita?.barberId === s._id ? true : false
                     }
                   />
                   <label
-                    htmlFor={s.id}
-                    className="inline-flex items-center justify-between max-h-[50px] overflow-hidden w-full p-3 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-green-400  hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-green-800 peer-checked:ring-2 peer-checked:ring-green-200 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    htmlFor={s._id}
+                    className="inline-flex items-center justify-between overflow-hidden w-full p-3 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-green-400  hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-green-800 peer-checked:ring-2 peer-checked:ring-green-200 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
                   >
                     <div className="block truncate ">
-                      <div className="w-full text-lg font-semibold ">
+                      <div className="w-full   font-semibold ">
                         {s.name}
                       </div>
                       <div className=" text-sm ">{s.title}</div>
@@ -244,16 +244,16 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
             </h3>
             <ul className="grid w-full gap-3 grid-cols-2 md:grid-cols-3">
               {data.map((s) => (
-                <li key={s.id}>
+                <li key={s._id}>
                   <input
                     type="checkbox"
-                    id={s.id}
-                    value={s.id}
+                    id={s._id}
+                    value={s._id}
                     className="hidden peer"
                     {...register("services")}
                     defaultValue={cita?.services}
                     defaultChecked={
-                      cita && cita?.services.map((c) => c?.id).includes(s.id)
+                      cita && cita?.services.map((c) => c?._id).includes(s._id)
                     }
                     onClick={(e) => {
                       if (e.currentTarget.checked) {
@@ -262,21 +262,21 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
                         });
                       } else {
                         setServicesSelected((status) => {
-                          return status.filter((c) => c.id !== s.id);
+                          return status.filter((c) => c._id !== s._id);
                         });
                       }
                     }}
                   />
                   <label
-                    htmlFor={s.id}
-                    className="inline-flex items-center justify-between max-h-[50px] overflow-hidden w-full p-3 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-green-400  hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-green-800 peer-checked:ring-2 peer-checked:ring-green-200 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    htmlFor={s._id}
+                    className="inline-flex items-center justify-between overflow-hidden w-full p-3 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-green-400  hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-green-800 peer-checked:ring-2 peer-checked:ring-green-200 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
                   >
                     <div className="block truncate ">
-                      <div className="w-full text-lg font-semibold ">
+                      <div className="w-full   font-semibold ">
                         {s.name}
                       </div>
                       <div className=" text-sm ">{s.description}</div>
-                      <div className=" text-lg ">{ViewDollar(s.price)}</div>
+                      <div className="   ">{ViewDollar(s.price)}</div>
                     </div>
                   </label>
                 </li>
@@ -317,6 +317,8 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
           </div>
         </form>
       </div>
+
+      <FormCitaMoviminetoCaja/>
     </>
   );
 }

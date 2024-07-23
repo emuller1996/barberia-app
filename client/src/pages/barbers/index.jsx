@@ -18,7 +18,6 @@ export default function BarberPage() {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
     setbarberSelected(null);
-
   };
   useEffect(() => {
     getAllBarbers();
@@ -27,15 +26,16 @@ export default function BarberPage() {
   return (
     <div className="container mx-auto">
       <div>
+       
+       
         <button
-          type="button"
           onClick={() => {
             setOpen(true);
           }}
-          className="text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800  shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
+          type="button"
+          className="text-white font-semibold uppercase bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
         >
-      
-          Crear Barbero
+           Crear Barbero
         </button>
       </div>
 

@@ -61,7 +61,7 @@ export default function NavMenu({ setOpen }) {
             className="flex items-center p-2 text-gray-700 rounded-lg dark:text-white hover:bg-purple-100 hover:shadow hover:text-gray-900 dark:hover:bg-gray-700 group"
           >
             <i className="fa-solid fa-barcode text-purple-600"></i>
-            <span className="ms-3 text-purple-600  font-normal">Servicios </span>
+            <span className="ms-3 text-purple-600  font-normal">Servicios / Productos</span>
           </NavLink>
         </li>
 
@@ -104,7 +104,49 @@ export default function NavMenu({ setOpen }) {
             className="flex items-center p-2 text-gray-700 rounded-lg dark:text-white hover:bg-green-100 hover:shadow hover:text-gray-900 dark:hover:bg-gray-700 group"
           >
             <i className="fa-regular text-green-500  fa-calendar-days"></i>
-            <span className="ms-3 text-green-500  font-normal">Citas </span>
+            <span className="ms-3 text-green-500  font-normal">Citas / Agenda </span>
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            to="ventas"
+            onClick={
+              setOpen
+                ? () => {
+                    try {
+                      setOpen(false);
+                    } catch (error) {
+                      console.log(error);
+                    }
+                  }
+                : null
+            }
+            className="flex items-center p-2 text-gray-700 rounded-lg dark:text-white hover:bg-indigo-100 hover:shadow hover:text-gray-900 dark:hover:bg-gray-700 group"
+          >
+            <i className="fa-solid fa-cash-register text-indigo-500  "></i>
+            <span className="ms-3 text-indigo-500  font-normal">Ventas /   Factura </span>
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            to="movimientos-caja"
+            onClick={
+              setOpen
+                ? () => {
+                    try {
+                      setOpen(false);
+                    } catch (error) {
+                      console.log(error);
+                    }
+                  }
+                : null
+            }
+            className="flex items-center p-2 text-gray-700 rounded-lg dark:text-white hover:bg-indigo-100 hover:shadow hover:text-gray-900 dark:hover:bg-gray-700 group"
+          >
+            <i className="fa-regular fa-money-bill-1 text-yellow-500 "></i>
+            <span className="ms-3 text-yellow-500  font-normal">Caja / Movimientos </span>
           </NavLink>
         </li>
 

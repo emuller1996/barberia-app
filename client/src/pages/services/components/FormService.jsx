@@ -33,7 +33,7 @@ export default function FormService({
   const onSubmit = async (data) => {
     data.price = parseInt(data.price);
     if (service) {
-      data.id = service.id;
+      data.id = service._id;
       try {
         const r = await pachtUpdateServiceService(data);
         toast.success(r.data.message);
@@ -51,6 +51,8 @@ export default function FormService({
         await getAllServices();
         reset();
         setValue("price", "");
+        setServiceSelected(null);
+
       } catch (error) {
         console.log(error);
         toast.error(error.message);
@@ -72,7 +74,7 @@ export default function FormService({
           <div className="mb-4">
             <label
               htmlFor="name"
-              className="block mb-2 text-2xl text-gray-400 dark:text-white"
+              className="block mb-2 text-gray-400 dark:text-white"
             >
               Nombre del Servicio
             </label>
@@ -84,7 +86,7 @@ export default function FormService({
                 required: true,
                 pattern: { value: /^(?!\s)/, message: "nombre invalido" },
               })}
-              className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:purple-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:purple-blue-500"
             />
             <small className="text-red-400 capitalize">
               {errors?.name?.message}
@@ -94,7 +96,7 @@ export default function FormService({
           <div className="mb-4">
             <label
               htmlFor="price"
-              className="block mb-2 text-2xl text-gray-400 dark:text-white"
+              className="block mb-2  text-gray-400 dark:text-white"
             >
               Precio
             </label>
@@ -112,7 +114,7 @@ export default function FormService({
                   value={service?.price}
                   decimalSeparator=","
                   groupSeparator="."
-                  className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:purple-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:purple-blue-500"
                   prefix="$"
                   decimalsLimit={2}
                   onValueChange={(value, name, values) => {
@@ -126,7 +128,7 @@ export default function FormService({
               )}
             />
 
-            <span className="capitalize text-xl text-red-500">
+            <span className="capitalize  text-red-500">
               {errors?.price?.message}
             </span>
           </div>
@@ -134,7 +136,7 @@ export default function FormService({
           <div className="mb-4">
             <label
               htmlFor="description"
-              className="block mb-2 text-2xl text-gray-400 dark:text-white"
+              className="block mb-2  text-gray-400 dark:text-white"
             >
               Descripcion
             </label>
@@ -143,7 +145,7 @@ export default function FormService({
               type="text"
               defaultValue={service?.description}
               {...register("description")}
-              className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:purple-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:purple-blue-500"
             />
           </div>
 

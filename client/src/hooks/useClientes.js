@@ -1,7 +1,12 @@
 import { useState } from "react";
-import { getAllClienteService } from "../services/cliente.services";
+import {
+  getAllClienteService,
+  getValidateClienteService,
+} from "../services/cliente.services";
+import axios from "axios";
 export const useClientes = () => {
   const [data, setData] = useState([]);
+  const [dataP, setdataP] = useState([]);
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -38,10 +43,32 @@ export const useClientes = () => {
     }
   };
 
+  const validateCliente = async (number) => {
+    try {
+      return await getValidateClienteService(number);
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
+
+  const getUsersPagination = async (page, perPage, search = "") => {
+    setLoading(true);
+
+    const response = await axios.get(
+      `/clientes/pagination?page=${page}&per_page=${perPage}&delay=1&search=${search}`
+    );
+    setdataP({ data: response.data.data, total: response.data.total });
+    setLoading(false);
+  };
+
   return {
     data,
     error,
     loading,
     getAllClientes,
+    getUsersPagination,
+    dataP,
+    validateCliente,
   };
 };

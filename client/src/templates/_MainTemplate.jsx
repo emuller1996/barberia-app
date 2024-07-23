@@ -13,12 +13,12 @@ export default function MainTemplate() {
 
       <AppAside open={open} setOpen={setOpen} />
 
-      <div className="mt-[45px]  md:mt-[41px] sm:ml-80 xl:ml-96 text-center">
+      <div className="mt-[57px]  md:mt-[46px] sm:ml-64 xl:ml-64 text-center">
         <AppBreadcrumb />
       </div>
-      <div className="p-4 sm:ml-96 xl:ml-96 ">
+      <div className="p-4 sm:ml-64 xl:ml-64 ">
         <div className="p-2  border-gray-200  rounded-lg dark:border-gray-700 ">
-          <Suspense fallback={"load..."}>
+          <Suspense fallback={<> Cargando . . .</>}>
             <Routes>
               {routes.map((route, idx) => {
                 return (

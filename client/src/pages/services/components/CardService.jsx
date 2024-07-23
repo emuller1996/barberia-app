@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { ViewDollar } from "../../../utils";
 
 export default function CardService({ service, handleEditService }) {
   return (
@@ -10,7 +11,7 @@ export default function CardService({ service, handleEditService }) {
           </span>
           <div className="d-flex flex-col lg:flex-row items-start">
             <div className="col-6 text-lg text-nowrap">Precio</div>
-            <div className="col-6 md:text-end">{service?.price}</div>
+            <div className="col-6 md:text-end">{ViewDollar(service?.price)}</div>
           </div>
           <div className="d-flex flex-col lg:flex-row items-start">
             <div className="col-6 text-lg text-nowrap">Descripcion</div>

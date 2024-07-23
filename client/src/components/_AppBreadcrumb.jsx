@@ -7,8 +7,7 @@ const AppBreadcrumb = () => {
   return (
     <nav aria-label="breadcrumbs" className="  p-2 bg-gray-50  border border-b-gray-300 shadow-inner">
       <ol className="flex justify-start ps-6 gap-2 font-semibold capitalize">
-        <li className="flex items-center text-gray-500  hover:text-gray-700">
-          <Link to="/">Inicio</Link>
+       {/*  <li className="flex items-center text-gray-500  hover:text-gray-700">
           {pathnames.length !== 0 && (
             <svg
               className="w-6 h-6 text-gray-500 "
@@ -28,13 +27,13 @@ const AppBreadcrumb = () => {
               />
             </svg>
           )}
-        </li>
+        </li> */}
 
         {pathnames.map((name, index) => {
           const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
           const isLast = index === pathnames.length - 1;
           return (
-            <li key={name} className="flex text-gray-500 hover:text-gray-700" >
+            <li key={name} className="flex items-center text-gray-500 hover:text-gray-700" >
               {isLast ? <span>{name}</span> : <Link to={routeTo}>{name}</Link>}
               {pathnames.length !== index + 1 && (
                 <svg

@@ -3,13 +3,12 @@ import { validateResult } from "../helpers/validateHelper.js";
 
 const validateCreateProductos = [
   checkSchema({
-    description: {
-      exists: { errorMessage: "el nombre del barbero el obligatorio " },
+    name: {
+      exists: { errorMessage: "el nombre del producto el obligatorio " },
       notEmpty: { errorMessage: "no puedo ir vacio" },
     },
-
     price: {
-      exists: { errorMessage: "el precio del servicio el obligatorio " },
+      exists: { errorMessage: "el precio del producto el obligatorio " },
       notEmpty: { errorMessage: "el precio no puede ir vacio" },
       isNumeric: { errorMessage: "el precio debe ser un numero " },
     },

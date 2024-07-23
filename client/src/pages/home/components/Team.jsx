@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useBarbers } from "../../../hooks/useBarbers";
-import Carousel from "react-multi-carousel";
+/* import Carousel from "react-multi-carousel"; */
 import "react-multi-carousel/lib/styles.css";
 export default function TeamComponent() {
   const { data, getAllBarbers } = useBarbers();
@@ -9,102 +9,72 @@ export default function TeamComponent() {
     getAllBarbers();
   }, []);
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3, // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 2, // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1, // optional, default to 1.
-    },
-  };
+  console.log(data);
   return (
-    <div className="team-area section-padding2 pb-180" id="team">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-xl-8 col-lg-8 col-md-11 col-sm-11">
-            <div className="section-tittle text-center mb-100">
-              <h2>Equipo profesional</h2>
-              <span>
-                Nuestros expertos en cortes de cabello dispobiles para usted
-              </span>
-            </div>
-          </div>
+    <section id="equipo" className="bg-white dark:bg-gray-900">
+      <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-24 lg:px-6">
+        <div className="max-w-screen-md mx-auto mb-8 text-center lg:mb-12">
+          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            Profesionales
+          </h2>
+          <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
+            Este es el equipo de trabajo que tenemos a tu servicio, que esperas?
+            saca tu cita con uno de ellos!
+          </p>
         </div>
-        <Carousel
-          swipeable={false}
-          draggable={false}
-          showDots={true}
-          responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
-          infinite={true}
-          autoPlaySpeed={2000}
-          keyBoardControl={true}
-          customTransition="all .5s"
-          transitionDuration={500}
-          autoPlay={true}
-          containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
-        >
-          {data.map((c) => (
-            <div key={c} className=" px-4">
-              <div className="single-team mb-80 text-center ">
-                <div className="team-img h-[500px] bg-cover">
-                  <img
-                    className="bg-cover h-[500px] "
-                    src={c.img_url}
-                    alt="JAJ"
-                  />
-                </div>
-                <div className="team-caption">
-                  <span>{c.title}</span>
-                  <h3>
-                    <a href="#">{c.name}</a>
-                  </h3>
-                </div>
+
+       
+       
+        
+
+        
+
+        <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+          {data.map((profesional) => (
+            <div
+              key={profesional._id}
+              className="flex flex-col max-w-lg p-6 mx-auto text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white"
+            >
+              <div className="flex justify-center">
+                <img src={profesional.base64Image} className="" alt="" />
               </div>
+              <h3 className="mb-0 text-2xl font-semibold">
+                {profesional.name}
+              </h3>
+              <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                {profesional.title}
+              </p>
+             
+              <hr className="my-4" />
+              <ul role="list" className="mb-8 space-y-4 text-left">
+                {profesional.servicesInfo.map((service, i) => (
+                  <li key={i} className="flex items-center space-x-3">
+                    <svg
+                      className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                    <span>{service.name}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#"
+                className="text-white  uppercase font-semibold bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-purple-200  rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-purple-900"
+              >
+                Agendar Cita
+              </a>
             </div>
           ))}
-        </Carousel>
-        <div className="row team-active dot-style">
-          {/* <div className="col-xl-4 col-lg-4 col-md-6 col-sm-">
-            <div className="single-team mb-80 text-center">
-              <div className="team-img">
-                <img src="assets/img/gallery/team2.png" alt="" />
-              </div>
-              <div className="team-caption">
-                <span>Color Expart</span>
-                <h3>
-                  <a href="#">Steve L. Nolan</a>
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div className="col-xl-4 col-lg-4 col-md-6 col-sm-">
-            <div className="single-team mb-80 text-center">
-              <div className="team-img">
-                <img src="assets/img/gallery/team3.png" alt="" />
-              </div>
-              <div className="team-caption">
-                <span>Master Barber</span>
-                <h3>
-                  <a href="#">Edgar P. Mathis</a>
-                </h3>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

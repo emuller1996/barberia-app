@@ -1,0 +1,21 @@
+.DataTableCliente div div div .rdt_TableHeadRow{
+    color: rgb(34, 34, 34);
+    background: rgb(111, 220, 255);
+    background: linear-gradient(87deg, rgba(111, 220, 255, 1) 0%, rgba(161, 192, 193, 1) 100%);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.DataTableCliente ~  div .rdt_Pagination{
+    overflow: hidden;
+    background: rgb(111, 220, 255);
+    background: linear-gradient(87deg, rgba(111, 220, 255, 1) 0%, rgba(161, 192, 193, 1) 100%);
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 0 0 0.7em 0.7em;
+}
+.DataTableCliente  div div  div .rdt_TableBody .rdt_TableCell{
+    font-weight: 400;
+    background-color: #f8f8f8;
+
+}
+

@@ -37,7 +37,7 @@ export default function FormProductos({
 
     data.quantity = parseInt(data.quantity);
     if (producto) {
-      data.id = producto.id;
+      data.id = producto._id;
       try {
         const r = await pachtUpdateProductosService(data);
         toast.success(r.data.message);
@@ -81,10 +81,10 @@ export default function FormProductos({
               Descripcion
             </label>
             <input
-              id="description"
+              id="name"
               type="text"
-              defaultValue={producto?.description}
-              {...register("description", { required: true })}
+              defaultValue={producto?.name}
+              {...register("name", { required: true })}
               className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:fuchsia-blue-500"
             />
           </div>

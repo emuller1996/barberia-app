@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { getAllProductosService } from "../services/productos.services";
+import axios from "axios";
 export const useProductos = () => {
   const [data, setData] = useState([]);
+  const [dataP, setdataP] = useState([])
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -38,10 +40,22 @@ export const useProductos = () => {
     }
   };
 
+
+  const getProductosPagination = async (page,perPage, search = "") => {
+    setLoading(true);
+
+    const response = await axios.get(
+      `/productos/pagination?page=${page}&per_page=${perPage}&delay=1&search=${search}`
+    );
+    setdataP({ data: response.data.data, total: response.data.total });
+    setLoading(false);
+  };
   return {
     data,
     error,
     loading,
     getAllProductos,
+    getProductosPagination,
+    dataP
   };
 };

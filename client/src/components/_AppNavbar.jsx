@@ -10,8 +10,8 @@ export default function AppNavbar({ setOpen }) {
     setOpen: PropTypes.func,
   };
   return (
-    <nav className="fixed top-0 z-50 w-full bg-gray-200 border-b border-gray-400 dark:bg-gray-800 dark:border-gray-700">
-      <div className="px-3 py-3 lg:px-5 lg:pl-3">
+    <nav className="fixed top-0 z-50 py-2 w-full bg-gray-200 border-b border-gray-400 dark:bg-gray-800 dark:border-gray-700">
+      <div className="lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start rtl:justify-end">
             <button
@@ -41,7 +41,7 @@ export default function AppNavbar({ setOpen }) {
             </button>
             <Link to="/" className="flex ms-2 md:me-24">
               {/* <img src={logo} className="h-8 me-3" alt="FlowBite Logo" /> */}
-              <span className="self-center font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+              <span className="self-center font-semibold  whitespace-nowrap dark:text-white">
                 BARBER APP- ADMIN
               </span>
             </Link>
@@ -54,6 +54,7 @@ export default function AppNavbar({ setOpen }) {
                 label={
                   <Avatar
                     alt="User settings"
+                    size={"sm"}
                     img={
                       "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                     }
@@ -62,16 +63,16 @@ export default function AppNavbar({ setOpen }) {
                 }
               >
                 <Dropdown.Header>
-                  <span className="block text-xl ">name</span>
-                  <span className="block  text-xl ">username</span>
+                  <span className="block  ">name</span>
+                  <span className="block  ">username</span>
 
-                  <span className="block  text-xl truncate  font-medium">
+                  <span className="block   truncate  font-medium">
                     email
                   </span>
                 </Dropdown.Header>
-                <Dropdown.Item className="text-xl">Mi Perfil</Dropdown.Item>
+                <Dropdown.Item className="">Mi Perfil</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item className="text-xl">Sign out</Dropdown.Item>
+                <Dropdown.Item className="">Sign out</Dropdown.Item>
               </Dropdown>
             </div>
           </div>

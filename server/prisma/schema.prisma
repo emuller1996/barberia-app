@@ -49,6 +49,7 @@ model Client {
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   Appointment  Appointment[]
+  Invoice      Invoice[]
 }
 
 model Appointment {
@@ -64,16 +65,53 @@ model Appointment {
   clientId   String?
   barber     Barber?   @relation(fields: [barberId], references: [id])
   barberId   String
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? @updatedAt
 }
 
 model Product {
+  id            String          @id @default(uuid())
+  code          Int             @unique @default(autoincrement())
+  description   String
+  quantity      Int
+  price         Float
+  cost          Float
+  isActive      Boolean?        @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  InvoiceDetail InvoiceDetail[]
+}
+
+model InvoiceDetail {
   id          String   @id @default(uuid())
-  code        Int      @unique @default(autoincrement())
-  description String
-  quantity     Int
-  price       Float
-  cost        Float
-  isActive    Boolean? @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  product     Product? @relation(fields: [productId], references: [id])
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id] )
+  quantity    Int
+  price_unit  Float
+  price_total Float
+  productId   String?
+  invoiceId   String
+}
+
+model Invoice {
+  id   String @id @default(uuid())
+  code Int    @unique @default(autoincrement())
+
+  client         Client?         @relation(fields: [clientId], references: [id])
+  clientId       String?
+  total          Float
+  status         String?
+  payment_method String?
+  date           DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  InvoiceDetail  InvoiceDetail[]
+}
+
+model CashMovement {
+  id      String    @id @default(uuid())
+  date    DateTime?
+  entry   Float?
+  exit    Float?
+  concept String?
 }
