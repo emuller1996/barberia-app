@@ -1,5 +1,5 @@
 import server from "./src/app.js";
-
+import 'dotenv/config' 
 
 server.listen(process.env.PORT, () => {
   console.log(process.env.PORT);

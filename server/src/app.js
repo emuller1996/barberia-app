@@ -12,6 +12,7 @@ server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 
+
 server.use("/", routes);
 
 // Error catching endware.
