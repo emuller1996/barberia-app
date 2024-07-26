@@ -12,11 +12,10 @@ const BarbersRouter = Router();
 BarbersRouter.get("/", async (req, res) => {
   try {
     const barbersResquest = await buscarElasticByType("barbero");
-    console.log(barbersResquest);
 
     var barbers = barbersResquest;
     barbers = barbers.map(async (c) => {
-      if ( Array.isArray(c.services) && c.services !== null) {
+      if (Array.isArray(c.services) && c.services !== null) {
         const servicesInfo = await Promise.all(
           await c.services.map(async (i) => await getDocumentById(i))
         );
@@ -29,7 +28,6 @@ BarbersRouter.get("/", async (req, res) => {
       }
     });
     barbers = await Promise.all(barbers);
-    console.log(barbers);
     res.json(barbers);
   } catch (error) {
     console.log(error);

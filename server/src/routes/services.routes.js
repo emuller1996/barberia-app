@@ -7,8 +7,6 @@ const ServicesRouter = Router();
 ServicesRouter.get("/", async (req, res) => {
   try {
     const services = await buscarElasticByType("servicio");
-
-    console.log(services);
     res.json(services);
   } catch (error) {
     console.log(error);
@@ -35,7 +33,6 @@ ServicesRouter.patch("/:id", validateCreateService, async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message });
-
   }
 });
 
