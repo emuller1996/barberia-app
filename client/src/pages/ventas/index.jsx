@@ -52,7 +52,6 @@ export default function VentasPage() {
 
   const currentDate = moment.utc();
   const localDate = currentDate.tz("America/Bogota");
-  console.log(localDate.format().split("T")[0]);
   const [VentasDay, setVentasDay] = useState([]);
 
   const [date, setDate] = useState(localDate.format().split("T")[0]);
@@ -64,19 +63,18 @@ export default function VentasPage() {
   const getAllFacturas = async () => {
     try {
       const r = await getAllInvoiceByDateService(date);
-      console.log(r.data);
       setVentasDay(r.data);
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="container">
+    <div className="container  mx-auto">
       <p className="text-center my-2 text-uppercase font-medium text-indigo-500">
         Facturas del Dia
       </p>
       <div className="border-x border-y border-indigo-300 rounded-2xl shadow-md p-3 mb-4">
-        <div className="flex justify-between">
+        <div className="flex flex-col md:flex-row gap-3 justify-between">
           <div>
             <input
               type="date"
@@ -84,18 +82,21 @@ export default function VentasPage() {
               onChange={(e) => {
                 setDate(e.target.value);
               }}
-              className="bg-gray-50  text-2xl border-indigo-400 border-opacity-45 text-gray-900 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:indigo-blue-500"
+              className="bg-gray-50    border-indigo-400 border-opacity-45 text-gray-900 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:indigo-blue-500"
             />
           </div>
-          <Link to={"/dashboard/ventas/registar"}>
+          <div>
+
+          <Link className="" to={"/dashboard/ventas/registar"}>
             <button
               type="submit"
-              className="text-white  bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
+              className="text-white  bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:focus:ring-indigo-800 shadow-lg font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
             >
               <i className="fa-solid fa-cash-register me-3  "></i>
               Registar Venta
             </button>
           </Link>
+          </div>
         </div>
       </div>
 

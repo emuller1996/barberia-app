@@ -173,7 +173,7 @@ export default function FormBarber({
           <h3 className="mb-3  font-medium text-gray-500 dark:text-white">
             Selecione los Servicios:
           </h3>
-          <ul className="grid w-full gap-3 grid-cols-2 md:grid-cols-3">
+          <ul className="grid w-full gap-3 grid-cols-2 md:grid-cols-2">
             {data.map((s) => (
               <li key={s._id}>
                 <input
@@ -190,7 +190,7 @@ export default function FormBarber({
                 />
                 <label
                   htmlFor={s._id}
-                  className="inline-flex items-center justify-between max-h-[50px] overflow-hidden w-full p-3 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-orange-400  hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-orange-800 peer-checked:ring-2 peer-checked:ring-orange-200 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                  className="inline-flex items-center justify-between max-h-[100px] overflow-hidden w-full p-3 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-orange-400  hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-orange-800 peer-checked:ring-2 peer-checked:ring-orange-200 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
                 >
                   <div className="block truncate ">
                     <div className="w-full text-lg font-semibold ">

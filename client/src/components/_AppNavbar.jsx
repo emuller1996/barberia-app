@@ -47,7 +47,7 @@ export default function AppNavbar({ setOpen }) {
             </Link>
           </div>
           <div className="flex items-center">
-            <div className="flex items-center ms-3">
+            <div className="flex items-center ms-3 me-3 lg:me-0">
               <Dropdown
                 arrowIcon={false}
                 inline

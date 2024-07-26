@@ -3,32 +3,52 @@ import { useServicios } from "../../hooks/useServicios";
 import FormService from "./components/FormService";
 import CardService from "./components/CardService";
 import MenuProductoServices from "../../components/_AppMenuProductoServices";
+import { Drawer } from "@mui/material";
+
 export default function ServicePage() {
   const { data, getAllServicios, loading } = useServicios();
   const [serviceSelected, setServiceSelected] = useState(null);
 
   const handleEditService = (service) => {
     setServiceSelected(service);
+    setOpen(true)
   };
   useEffect(() => {
     getAllServicios();
   }, []);
 
+  const [open, setOpen] = useState(false);
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
   return (
     <div className="container mx-auto">
       <MenuProductoServices />
+      <div className="mb-3">
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(true);
+          }}
+          className="text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800  shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
+        >
+          Crear Servicio
+        </button>
+      </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <div>
+      <div className="">
+        <Drawer open={open} onClose={toggleDrawer(false)}>
           <FormService
             getAllServices={getAllServicios}
             setServiceSelected={setServiceSelected}
             service={serviceSelected}
+            setOpen={setOpen}
           />
-        </div>
+        </Drawer>
 
         <div className="h-[500px]">
-          <div className="grid grid-cols-1 gap-2">
+          <div className="grid   sm:grid-cols-2 md:grid-cols-2 gap-2">
             {loading && (
               <div className="text-center my-20">
                 <div role="status">

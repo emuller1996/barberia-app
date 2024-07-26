@@ -76,7 +76,7 @@ export default function FormProductos({
           <div className="mb-4">
             <label
               htmlFor="description"
-              className="block mb-2 text-2xl text-gray-400 dark:text-white"
+              className="block mb-2   text-gray-400 dark:text-white"
             >
               Descripcion
             </label>
@@ -85,13 +85,13 @@ export default function FormProductos({
               type="text"
               defaultValue={producto?.name}
               {...register("name", { required: true })}
-              className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:fuchsia-blue-500"
+              className="bg-gray-50 border   border-gray-300 text-gray-900 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:fuchsia-blue-500"
             />
           </div>
           <div className="mb-4">
             <label
               htmlFor="price"
-              className="block mb-2 text-2xl text-gray-400 dark:text-white"
+              className="block mb-2   text-gray-400 dark:text-white"
             >
               Precio
             </label>
@@ -109,11 +109,10 @@ export default function FormProductos({
                   value={producto?.price}
                   decimalSeparator=","
                   groupSeparator="."
-                  className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:fuchsia-blue-500"
+                  className="bg-gray-50 border   border-gray-300 text-gray-900 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:fuchsia-blue-500"
                   prefix="$"
                   decimalsLimit={2}
-                  onValueChange={(value, name, values) => {
-                    console.log(value, name, values);
+                  onValueChange={(value) => {
                     if (producto) {
                       producto.price = value;
                     }
@@ -131,7 +130,7 @@ export default function FormProductos({
           <div className="mb-4">
             <label
               htmlFor="price"
-              className="block mb-2 text-2xl text-gray-400 dark:text-white"
+              className="block mb-2   text-gray-400 dark:text-white"
             >
               Costo
             </label>
@@ -149,11 +148,10 @@ export default function FormProductos({
                   value={producto?.cost}
                   decimalSeparator=","
                   groupSeparator="."
-                  className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:fuchsia-blue-500"
+                  className="bg-gray-50 border   border-gray-300 text-gray-900 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:fuchsia-blue-500"
                   prefix="$"
                   decimalsLimit={2}
-                  onValueChange={(value, name, values) => {
-                    console.log(value, name, values);
+                  onValueChange={(value) => {
                     if (producto) {
                       producto.cost = value;
                     }
@@ -171,7 +169,7 @@ export default function FormProductos({
           <div className="mb-4">
             <label
               htmlFor="quantity"
-              className="block mb-2 text-2xl text-gray-400 dark:text-white"
+              className="block mb-2   text-gray-400 dark:text-white"
             >
               Cantidad
             </label>
@@ -180,7 +178,7 @@ export default function FormProductos({
               type="number"
               defaultValue={producto?.quantity}
               {...register("quantity", { required: true })}
-              className="bg-gray-50 border text-2xl border-gray-300 text-gray-900 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:fuchsia-blue-500"
+              className="bg-gray-50 border   border-gray-300 text-gray-900 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:fuchsia-blue-500"
             />
           </div>
 
@@ -192,7 +190,7 @@ export default function FormProductos({
                   setOpen(false);
                   reset();
                 }}
-                className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
+                className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg  dark:shadow-lg font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
               >
                 <i className="me-4 fa-solid fa-ban"></i>
                 Cancelar
@@ -200,7 +198,7 @@ export default function FormProductos({
             )}
             <button
               type="submit"
-              className="text-white bg-gradient-to-r from-fuchsia-400 via-fuchsia-500 to-fuchsia-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
+              className="text-white bg-gradient-to-r from-fuchsia-400 via-fuchsia-500 to-fuchsia-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg dark:shadow-lg  font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
             >
               <i className="me-4 fa-solid fa-floppy-disk"></i>
               Guardar

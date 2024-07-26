@@ -28,7 +28,7 @@ export const useServicios = () => {
       }
     } catch (error) {
       if (!signal.aborted) {
-        setData(null);
+        setData([]);
         setError(error);
       }
     } finally {

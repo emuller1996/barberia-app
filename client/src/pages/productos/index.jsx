@@ -31,7 +31,7 @@ export default function ProductosPage() {
     {
       name: "Descripcion",
       selector: (row) => row.name,
-      width:"200px"
+      width: "200px",
     },
     {
       name: "Precio",
@@ -61,31 +61,55 @@ export default function ProductosPage() {
       name: "#",
       button: true,
       cell: (row) => (
-        <button
-          onClick={() => {
-            setProductoSelected(row);
-            setOpen(true);
-          }}
-          className="px-3 py-2 text-xs font-medium text-center text-white bg-fuchsia-700 rounded-lg hover:bg-fuchsia-800 focus:ring-4 focus:outline-none focus:ring-fuchsia-300 dark:bg-fuchsia-600 dark:hover:bg-fuchsia-700 dark:focus:ring-fuchsia-800"
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
+        <>
+          <button
+            onClick={() => {
+              setProductoSelected(row);
+              setOpen(true);
+            }}
+            className="px-3 py-2 text-xs font-medium text-center text-white bg-fuchsia-700 rounded-lg hover:bg-fuchsia-800 focus:ring-4 focus:outline-none focus:ring-fuchsia-300 dark:bg-fuchsia-600 dark:hover:bg-fuchsia-700 dark:focus:ring-fuchsia-800"
           >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
-            />
-          </svg>
-        </button>
+            <svg
+              className="w-4 h-4 text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            className="ms-1 px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          >
+            <svg
+              className="w-4 h-4 text-white dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+              />
+            </svg>
+          </button>
+        </>
       ),
     },
   ];
@@ -136,7 +160,7 @@ export default function ProductosPage() {
             type="search"
             id="default-search"
             value={nameSearch}
-            className="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-fuchsia-500 focus:border-fuchsia-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:border-fuchsia-500"
+            className="block w-full p-3 ps-10 text-sm text-gray-900 border border-fuchsia-300 rounded-lg bg-gray-50 focus:ring-fuchsia-500 focus:border-fuchsia-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-fuchsia-500 dark:focus:border-fuchsia-500"
             placeholder="Buscar Cliente por Nombre"
             required
             onChange={(e) => {
@@ -154,10 +178,7 @@ export default function ProductosPage() {
           data={dataP.data}
           progressPending={loading}
           noDataComponent={
-            <div className="text-center my-52 uppercase">
-              
-              No hay productos
-            </div>
+            <div className="text-center my-52 uppercase">No hay productos</div>
           }
           progressComponent={
             <div className="text-center my-52">

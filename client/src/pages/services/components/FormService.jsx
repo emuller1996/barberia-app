@@ -12,6 +12,7 @@ export default function FormService({
   getAllServices,
   service,
   setServiceSelected,
+  setOpen
 }) {
   const {
     register,
@@ -40,6 +41,8 @@ export default function FormService({
         await getAllServices();
         setServiceSelected(null);
         reset();
+        setOpen(false)
+
       } catch (error) {
         console.log(error);
         toast.error(error.message);
@@ -52,6 +55,7 @@ export default function FormService({
         reset();
         setValue("price", "");
         setServiceSelected(null);
+        setOpen(false)
 
       } catch (error) {
         console.log(error);
@@ -62,7 +66,7 @@ export default function FormService({
 
   return (
     <>
-      <div className="border-x border-y  border-purple-200 rounded-lg  ">
+      <div className="border-x border-y  border-purple-200 rounded-lg  w-[400px] md:w-[600px]">
         <p className="text-center mt-3 text-purple-600 border-b-2 border-purple-200 w-1/2 mx-auto">
           {service ? "Editar Servcio " : " Crear Nuevo Servicio "}
         </p>
@@ -140,7 +144,7 @@ export default function FormService({
             >
               Descripcion
             </label>
-            <input
+            <textarea
               id="description"
               type="text"
               defaultValue={service?.description}
@@ -157,9 +161,10 @@ export default function FormService({
                 type="button"
                 onClick={() => {
                   setServiceSelected(null);
+                  setOpen(false)
                   reset();
                 }}
-                className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
+                className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg dark:shadow-lg darfont-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
               >
                 <i className="me-4 fa-solid fa-ban"></i>
                 Cancelar
@@ -167,7 +172,7 @@ export default function FormService({
             )}
             <button
               type="submit"
-              className="text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
+              className="text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg dark:shadow-lg font-medium rounded-lg  px-5 py-2.5 text-center me-2 mb-2"
             >
               <i className="me-4 fa-solid fa-floppy-disk"></i>
               Guardar
@@ -183,4 +188,5 @@ FormService.propTypes = {
   getAllServices: PropTypes.func.isRequired,
   service: PropTypes.object,
   setServiceSelected: PropTypes.func,
+  setOpen: PropTypes.func,
 };

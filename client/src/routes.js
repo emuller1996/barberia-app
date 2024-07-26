@@ -14,7 +14,9 @@ const UsuariosPage = React.lazy(() => import("./pages/usuarios"));
 
 
 
+
 const routes = [
+
   { path: "/", name: "Dasboard", element: DashboardPage },
   { path: "/barbers", name: "barbers", element: BarberPage },
   { path: "/services", name: "services", element: ServicePage },
@@ -24,6 +26,7 @@ const routes = [
   { path: "/ventas", name: "Citas", element: VentasPage },
   { path: "/ventas/registar", name: "Citas", element: RegistarVentaPage },
   { path: "/usuarios", name: "Citas", element: UsuariosPage },
+
 
 
   { path: "/movimientos-caja", name: "Movientos Caja", element: CajaPage },
