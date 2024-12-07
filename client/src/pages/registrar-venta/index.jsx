@@ -28,7 +28,11 @@ export default function RegistarVentaPage() {
     getAllProductos();
   }, []);
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const columns = [
     {
       name: "#",
@@ -61,6 +65,7 @@ export default function RegistarVentaPage() {
               return status.filter((c) => c._id !== row._id);
             });
           }}
+          type="button"
           className="px-3 py-2 text-xs font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
         >
           <svg
@@ -132,7 +137,7 @@ export default function RegistarVentaPage() {
 
       <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="">
         <div className="   ">
-          <div className="border-indigo-300 border-x border-y p-3 rounded-2xl min-h-[560px] flex flex-col gap-4 justify-between">
+          <div className="border-indigo-300 border-x border-y p-3 rounded-2xl flex flex-col gap-4 justify-between">
             <div className="text-center">
               <label className="inline-flex items-center cursor-pointer ">
                 <input
@@ -181,7 +186,7 @@ export default function RegistarVentaPage() {
 
             <div className="text-center border-t pt-3">
               <button
-                type="submit"
+                type="button"
                 onClick={() => {
                   setOpen(true);
                 }}
@@ -281,6 +286,28 @@ export default function RegistarVentaPage() {
                   </label>
                 </li>
               </ul>
+              {errors.payment_method && (
+                <div
+                  className="flex items-center p-4 mb-4 mt-4 text-sm text-yellow-800 border border-yellow-200  rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+                  role="alert"
+                >
+                  <svg
+                    className="flex-shrink-0 inline w-4 h-4 me-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                  </svg>
+                  <span className="sr-only">Info</span>
+                  <div>
+                    <span className="font-medium">
+                      Seleciona un Metodo de Pago
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
             <button
               type="submit"
@@ -316,7 +343,7 @@ export default function RegistarVentaPage() {
       </form>
 
       <Drawer open={open} onClose={toggleDrawer(false)}>
-        <TableProductoSelecionar addProduct={addProduct} />
+        <TableProductoSelecionar addProduct={addProduct} setOpen={setOpen} />
       </Drawer>
     </div>
   );

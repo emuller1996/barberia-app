@@ -33,6 +33,7 @@ export default function FormService({
 
   const onSubmit = async (data) => {
     data.price = parseInt(data.price);
+    data.duration = parseInt(data.duration);
     if (service) {
       data.id = service._id;
       try {
@@ -151,6 +152,28 @@ export default function FormService({
               {...register("description")}
               className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:purple-blue-500"
             />
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="name"
+              className="block mb-2 text-gray-400 dark:text-white"
+            >
+              Duraccion /en Minutos
+            </label>
+            <input
+              id="name"
+              type="number"
+              defaultValue={service && service.duration}
+              {...register("duration", {
+                required: true,
+                min:10
+              })}
+              className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:purple-blue-500"
+            />
+            <small className="text-red-400 capitalize">
+              {errors?.duration?.message}
+            </small>
           </div>
 
           

@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;    
+
+
+.PhoneInputInput{
+    @apply    bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full ps-14 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500;
+
+}
+
+.PhoneInputCountry{
+    @apply absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none;
+}

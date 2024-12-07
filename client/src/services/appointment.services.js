@@ -15,3 +15,7 @@ export const pachtUpdateDateAppointmentService = (data) => {
 export const getAllAppointmentService = (data) => {
   return axios.get("/citas", data);
 };
+
+export const getAllHoursAvailableByBarberService = (date, idBarber) => {
+  return axios.get(`/citas/get_hours_available/${date}/${idBarber}`);
+};

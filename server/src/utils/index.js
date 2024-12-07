@@ -58,7 +58,7 @@ export async function buscarElasticByType(type) {
   });
 }
 
-export async function buscarElasticByTypePagination(type, perPage, page, search) {
+export async function buscarElasticByTypePagination(type, perPage, page, search,createdTime='createdTime') {
   var consulta = {
     index: INDEX_ES,
     size: perPage,
@@ -73,7 +73,7 @@ export async function buscarElasticByTypePagination(type, perPage, page, search)
         }
       },
       sort: [
-        { createdTime: { order: "asc" } }, // Reemplaza con el campo por el que quieres ordenar
+        { [createdTime]: { order: "asc" } }, // Reemplaza con el campo por el que quieres ordenar
       ],
     },
   }
@@ -171,4 +171,37 @@ export async function createInMasaDocumentByType(data, type) {
 
  /*  const response = await client.bulk({index:INDEX_ES, body:{}}) */
   return bulkResponse;
+}
+
+export async function updateQuantityById( id, decrement) {
+  try {
+    // Obtener el documento actual
+    const { body: document } = await client.get({
+      index: INDEX_ES,
+      id: id
+    });
+
+    // Calcular el nuevo valor de la cantidad
+    const newQuantity = document._source.quantity - decrement;
+    console.log(newQuantity);
+
+    console.log(document._source.quantity);
+    
+    // Actualizar el documento
+    const result = await client.update({
+      index: INDEX_ES,
+      id: id,
+      body: {
+        doc: {
+          quantity: newQuantity
+        }
+      }
+    });
+    console.log('Documento actualizado:', result);
+    return result;
+  } catch (error) {
+    console.error('Error actualizando el documento:', error);
+  }
+  await client.indices.refresh({ index: INDEX_ES });
+
 }

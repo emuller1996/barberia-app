@@ -7,10 +7,10 @@ import { useProductos } from "../../hooks/useProductos";
 import { ViewDollar } from "../../utils";
 
 export default function ProductosPage() {
-  const { getAllProductos, getProductosPagination, dataP, loading } =
-    useProductos();
+  const { getProductosPagination, dataP, loading } = useProductos();
   const [ProductoSelected, setProductoSelected] = useState(null);
   const [nameSearch, setnameSearch] = useState("");
+  const [Draw, setDraw] = useState(1);
 
   /*   const [loading, setLoading] = useState(false); */
   const [perPage, setPerPage] = useState(10);
@@ -18,7 +18,7 @@ export default function ProductosPage() {
 
   useEffect(() => {
     getProductosPagination(pageC, perPage, nameSearch);
-  }, [pageC, perPage, nameSearch]);
+  }, [pageC, perPage, nameSearch, Draw]);
   const [open, setOpen] = useState(false);
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -218,7 +218,9 @@ export default function ProductosPage() {
       <Drawer open={open} onClose={toggleDrawer(false)}>
         <FormProductos
           producto={ProductoSelected}
-          getAllProducto={getAllProductos}
+          getAllProducto={() => {
+            setDraw((status) => ++status);
+          }}
           setOpen={setOpen}
         />
       </Drawer>

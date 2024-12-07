@@ -11,3 +11,7 @@ export const patchUpdateBarberService = (data) => {
 export const getAllBarberService = (data) => {
   return axios.get("/barbers", data);
 };
+
+export const getAllServicesBarberService = (id) => {
+  return axios.get(`/barbers/${id}/services`);
+};

@@ -33,7 +33,7 @@ export default function CitasPage() {
   function renderEventContent(eventInfo) {
     console.log(eventInfo.event);
     return (
-      <div className=" bg-green-300">
+      <div className=" ">
         <div className="flex justify-between ">
           <span>{eventInfo.timeText}</span>
           <div className="flex gap-3">
@@ -142,16 +142,12 @@ export default function CitasPage() {
             </Tooltip>
           </div>
         </div>
-        <span className="text-sm block"> Cliente </span>
-        <span>
-          {eventInfo.event._def.extendedProps?.client
-            ? eventInfo.event._def.extendedProps?.client.name
-            : " NO CLIENTE"}
-        </span>
+       
       </div>
     );
   }
 
+  
   const parseIsoNose = (date) => {
     const utcDate = new Date(date);
 
@@ -175,11 +171,14 @@ export default function CitasPage() {
           Agendar Cita
         </button>
       </div>
-      <div className="min-h-[800px]">
+      <div>
+        
+      </div>
+      <div className="h-full overflow-x-auto ">
         <FullCalendar
           timeZone="UTC"
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView="timeGridWeek"
+          initialView="timeGridDay"
           locale={esLocale}
           headerToolbar={{
             start: "title",
@@ -208,8 +207,8 @@ export default function CitasPage() {
               citaData: c,
             };
           })}
-          slotMinTime={"07:00:00"}
-          slotMaxTime={"23:00:00"}
+          slotMinTime={"08:00:00"}
+          slotMaxTime={"18:00:00"}
           allDaySlot={false}
           eventContent={renderEventContent}
         />

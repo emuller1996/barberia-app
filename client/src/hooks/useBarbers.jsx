@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { getAllBarberService } from "../services/barbers.services";
+import { getAllBarberService, getAllServicesBarberService } from "../services/barbers.services";
 export const useBarbers = () => {
   const [data, setData] = useState([]);
 
+  const [ServicesBarber, setServicesBarber] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -35,11 +36,22 @@ export const useBarbers = () => {
       }
     }
   };
+  const getAllServicesByBarber = async (id) => {
+    try {
+      const result = await getAllServicesBarberService(id);
+      console.log(result);
+      setServicesBarber(result.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return {
     data,
     error,
     loading,
     getAllBarbers,
+    getAllServicesByBarber,
+    ServicesBarber
   };
 };

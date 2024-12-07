@@ -34,6 +34,40 @@ BarbersRouter.get("/", async (req, res) => {
   }
 });
 
+BarbersRouter.get("/:id/services", async (req, res) => {
+  try {
+    const barbersResquest = await getDocumentById(req.params.id);
+
+    const idsServicesBarber = barbersResquest.services;
+    console.log(idsServicesBarber);
+    const ArrP = idsServicesBarber.map(async (i) => {
+      return { ...(await getDocumentById(i)), _id: i };
+    });
+    console.log(ArrP);
+    const resultArry = await Promise.all(ArrP);
+
+    /* var barbers = barbersResquest;
+    barbers = barbers.map(async (c) => {
+      if (Array.isArray(c.services) && c.services !== null) {
+        const servicesInfo = await Promise.all(
+          await c.services.map(async (i) => await getDocumentById(i))
+        );
+        return {
+          ...c,
+          servicesInfo,
+        };
+      } else {
+        return c;
+      }
+    });
+    barbers = await Promise.all(barbers);
+     */
+    res.json(resultArry);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 BarbersRouter.post("/", validateCreate, async (req, res) => {
   try {
     console.log(req.body);

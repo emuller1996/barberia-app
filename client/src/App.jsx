@@ -7,6 +7,7 @@ import axios from "axios";
 import { AuthProvider } from "./context/AuthContext";
 import RouteProtected from "./utils/proteccion/RouteProtected";
 import LoginPage from "./pages/AuthPages/Login.jsx";
+import { Toaster } from "react-hot-toast";
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 function App() {
@@ -28,6 +29,8 @@ function App() {
             />
           </Routes>
         </BrowserRouter>
+      <Toaster position="top-left" reverseOrder={false} />
+
       </AuthProvider>
     </>
   );

@@ -19,8 +19,7 @@ export default function ServicesComponent() {
               Servicios
             </h2>
             <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
-              Este es el equipo de trabajo que tenemos a tu servicio, que
-              esperas? saca tu cita con uno de ellos!
+              Estos son los Servicios, que tenemos a tu disposicion.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -36,11 +35,18 @@ export default function ServicesComponent() {
                   <p className="mt-2 text-sm text-gray-500">
                     {service.description}
                   </p>
+                  <div className="">
+                    <p className="text-pretty text-justify text-gray-500">
+                      {service?.duration && ( <i className="fa-regular fa-clock me-2"></i>)}
+                      {service?.duration && `${service?.duration} Minutos`}
+                    </p>
+                  </div>
                   <div className=" ">
                     <p className="text-3xl font-light tracking-tight text-green-700">
                       {ViewDollar(service.price)}
                     </p>
                   </div>
+                 
                 </div>
               </div>
             ))}

@@ -65,7 +65,7 @@ export default function UsuariosPage() {
       </div>
 
       <Drawer open={open} onClose={toggleDrawer(false)}>
-        <FormUsuario />
+        <FormUsuario setOpen={setOpen} />
       </Drawer>
     </div>
   );

@@ -70,6 +70,7 @@ authRouter.get("/get-user/", validateToken, (req, res) => {
     }
   });
 const generateAccessToken = (user) => {
-  return jsonwebtoken.sign(user, process.env.SECRECT_KEY, { expiresIn: "30m" });
+  return jsonwebtoken.sign(user, process.env.SECRECT_KEY, { expiresIn: "6h" });
 };
+
 export default authRouter;

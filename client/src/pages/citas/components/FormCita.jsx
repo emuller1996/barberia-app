@@ -17,7 +17,7 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
   const { data, getAllServicios } = useServicios();
   const { data: listBarbers, getAllBarbers } = useBarbers();
   const [ServicesSelected, setServicesSelected] = useState(
-    cita ? cita.services : []
+    cita ? cita.services_appointment : []
   );
   const { data: clienteAll, loading, getAllClientes } = useClientes();
   const [conCliente, setConCliente] = useState(cita?.client ? true : false);
@@ -33,7 +33,6 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm();
 
@@ -217,9 +216,9 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
                     value={s._id}
                     className="hidden peer"
                     {...register("barber_id")}
-                    defaultValue={cita?.barberId}
+                    defaultValue={cita?.barber?._id}
                     defaultChecked={
-                      cita && cita?.barberId === s._id ? true : false
+                      cita && cita?.barber?._id === s._id ? true : false
                     }
                   />
                   <label
@@ -250,10 +249,10 @@ export default function FormCita({ cita, onClose, getAllCitas }) {
                     id={s._id}
                     value={s._id}
                     className="hidden peer"
-                    {...register("services")}
-                    defaultValue={cita?.services}
+                    {...register("services_appointment")}
+                    defaultValue={cita?.services_appointment}
                     defaultChecked={
-                      cita && cita?.services.map((c) => c?._id).includes(s._id)
+                      cita && cita?.services_appointment.map((c) => c?._id).includes(s._id)
                     }
                     onClick={(e) => {
                       if (e.currentTarget.checked) {

@@ -7,9 +7,6 @@ export default function FormUsuario({ setOpen }) {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    toast.success("Melo");
-
     try {
       const r = await postCreateUsuariosService(data);
       toast.success(r.data.message);

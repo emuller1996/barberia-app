@@ -5,11 +5,13 @@ import DataTable from "react-data-table-component";
 import { Controller, useForm } from "react-hook-form";
 import CurrencyInput from "react-currency-input-field";
 import PropTypes from "prop-types";
+import toast from "react-hot-toast";
 
 TableProductoSelecionar.propTypes = {
   addProduct: PropTypes.func,
+  setOpen: PropTypes.func,
 };
-export default function TableProductoSelecionar({ addProduct }) {
+export default function TableProductoSelecionar({ addProduct,setOpen }) {
   const { getProductosPagination, dataP, loading } = useProductos();
   const [ProductoSelected, setProductoSelected] = useState(null);
   const [nameSearch, setnameSearch] = useState("");
@@ -25,7 +27,7 @@ export default function TableProductoSelecionar({ addProduct }) {
   const {
     register,
     handleSubmit,
-
+    reset,
     control,
     formState: { errors },
   } = useForm();
@@ -75,14 +77,24 @@ export default function TableProductoSelecionar({ addProduct }) {
 
   const onSubmit = async (data) => {
     addProduct(Object.assign(ProductoSelected, data));
+    toast.success("Producto Agregado a la Factura Correctamente.");
+    setProductoSelected(null);
+    reset();
+
   };
 
   return (
     <div className="container mx-auto   w-[400px] md:w-[700px] p-6">
-      <p className="text-center font-bold uppercase">Lista de Productos</p>
 
       {ProductoSelected ? (
         <>
+          <div className="text-center border-y border-fuchsia-300 mb-3">
+            <span className="text-center">Producto Selecionado</span>
+            <p className="text-start">Nombre : {ProductoSelected.name}</p>
+            <p className="text-start">Precio : {ViewDollar(ProductoSelected.price)}</p>
+            <p className="text-start">Existencias : {ProductoSelected?.quantity}</p>
+
+          </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
               <label
@@ -110,8 +122,7 @@ export default function TableProductoSelecionar({ addProduct }) {
               <Controller
                 control={control}
                 name="price"
-                defaultValue={ProductoSelected.price}
-                rules={{ required: "el Precio es Requerido" }}
+                rules={{ required: "el Precio es requerido." }}
                 render={({ field: { onChange, name, ref, value } }) => (
                   <CurrencyInput
                     id={name}
@@ -130,7 +141,7 @@ export default function TableProductoSelecionar({ addProduct }) {
                 )}
               />
 
-              <span className="capitalize text-xl text-red-500">
+              <span className="capitalize  text-red-500">
                 {errors?.price?.message}
               </span>
             </div>
@@ -158,6 +169,8 @@ export default function TableProductoSelecionar({ addProduct }) {
         </>
       ) : (
         <>
+      <p className="text-center font-bold uppercase">Lista de Productos</p>
+
           <form className="w-full my-2 ">
             <label
               htmlFor="default-search"
@@ -241,6 +254,33 @@ export default function TableProductoSelecionar({ addProduct }) {
                 setpageC(e);
               }}
             />
+          </div>
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={() => {
+                setOpen(false)
+              }}
+              className="flex items-center gap-1 uppercase px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+            >
+              <svg
+                className="w-6 h-6 text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+              Cerrar
+            </button>
           </div>
         </>
       )}

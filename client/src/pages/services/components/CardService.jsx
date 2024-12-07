@@ -5,19 +5,23 @@ export default function CardService({ service, handleEditService }) {
   return (
     <div className="border border-purple-300 p-3 rounded-xl hover:bg-purple-50 hover:shadow">
       <div className="flex justify-between h-full flex-col gap-0 text-gray-500 w-full ">
-        <span className="font-medium uppercase text-3xl text-center border-b-2 border-dashed pb-2 mb-3 border-purple-200">
+        <span className="font-semibold uppercase text-xl text-center border-b-2 border-dashed pb-2 mb-3 border-purple-200">
           {service?.name}
         </span>
-        <div className="flex  justify-between border-b pb-2 mb-2 text-xl items-start">
+        <div className="flex  justify-between border-b pb-2 mb-2 items-start">
           <div className="font-semibold">Precio</div>
           <div className="font-semibold text-green-500">{ViewDollar(service?.price)}</div>
         </div>
         <div className="">
-          <div className="font-semibold text-lg">Descripcion</div>
+          <div className="font-semibold">Descripcion</div>
           <p className="text-pretty text-justify">{service?.description}</p>
         </div>
+        <div className="">
+            
+          <p className="text-pretty text-justify"><i className="fa-regular fa-clock me-2"></i>{service?.duration && `${service?.duration} Minutos` }</p>
+        </div>
 
-        <div className="text-center   mt-2 pt-2 border-t  border-dashed border-purple-200">
+        <div className="text-center   mt-2 pt-2 border-t-2   border-dashed border-purple-200">
           <button
             type="button"
             onClick={() => {

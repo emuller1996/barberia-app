@@ -1,24 +1,26 @@
 import { Link } from "react-router-dom";
 import TeamComponent from "./home/components/Team";
 import log from "../assets/com.svg";
+import logo from "../assets/logo.png";
+
 import { Navbar } from "flowbite-react";
 import ServicesComponent from "./home/components/Services";
 import HomeReserva from "./home/components/HomeReserva";
 export default function HomePage() {
   return (
     <>
-      <Navbar className="bg-gradient-to-r from-purple-400 to-purple-200 border-b fixed w-full">
-        <Navbar.Brand href="https://flowbite-react.com">
+      <Navbar className="bg-gradient-to-r py-4 from-purple-100 to-purple-50 border-b fixed w-full shadow ">
+        <Navbar.Brand href="/">
           <img
-            src={log}
-            className="mr-3 h-6 sm:h-9"
+            src={logo}
+            className="mr-3 h-9 sm:h-14"
             alt="Flowbite React Logo"
           />
-          <span className="hidden md:block self-center whitespace-nowrap text-xl font-semibold text-white">
-            Salon de Belleza o Barberia
+          <span className="hidden md:block self-center whitespace-nowrap text-xl font-semibold text-gray-600">
+            Nombre del Salon
           </span>
-          <span className=" md:hidden self-center whitespace-nowrap text-xl font-semibold text-white">
-            Salon
+          <span className=" md:hidden self-center whitespace-nowrap text-xl font-semibold text-gray-600">
+            Nombre
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">
@@ -35,21 +37,21 @@ export default function HomePage() {
         <Navbar.Collapse>
           <a
             href="#home"
-            className="text-white font-semibold uppercase hover:text-purple-600 "
+            className="text-gray-500 font-normal capitalize text-lg hover:text-purple-600 border-b text-center border-purple-300 md:border-0"
           >
             Inicio
           </a>
           <a
             href="#equipo"
-            className="text-white font-semibold uppercase hover:text-purple-600 "
+            className="text-gray-500 font-normal capitalize text-lg hover:text-purple-600  border-b text-center border-purple-300 md:border-0"
           >
             Equipo
           </a>
           <a
             href="#servicios"
-            className="text-white font-semibold uppercase hover:text-purple-600 "
+            className="text-gray-500 font-normal capitalize text-lg hover:text-purple-600   text-center border-purple-300 md:border-0"
           >
-            Servcios
+            Servicios
           </a>
         </Navbar.Collapse>
       </Navbar>

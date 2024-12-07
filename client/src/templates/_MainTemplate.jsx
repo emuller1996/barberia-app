@@ -4,7 +4,6 @@ import routes from "../routes";
 import AppAside from "../components/_AppAside";
 import AppNavbar from "../components/_AppNavbar";
 import AppBreadcrumb from "../components/_AppBreadcrumb";
-import { Toaster } from "react-hot-toast";
 export default function MainTemplate() {
   const [open, setOpen] = useState(false);
   return (
@@ -37,7 +36,6 @@ export default function MainTemplate() {
           </Suspense>
         </div>
       </div>
-      <Toaster position="top-left" reverseOrder={false} />
     </>
   );
 }

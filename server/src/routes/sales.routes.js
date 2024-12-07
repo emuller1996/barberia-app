@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { validateCreateSales } from "../validators/sales.validar.js";
 import moment from "moment-timezone";
-import { crearElasticByType, getDocumentById, parseDateISO } from "../utils/index.js";
+import { crearElasticByType, getDocumentById, parseDateISO, updateQuantityById } from "../utils/index.js";
 import { client } from "../ClienteElasticSearch.js";
 
 const InvoiceRouter = Router();
@@ -94,12 +94,16 @@ InvoiceRouter.post("/", validateCreateSales, async (req, res) => {
     dataMv.fecha = `${localDate.format()}`
     dataMv.entra = `${data.payment_method ==="Efectivo" ? data.total : 0}`
     dataMv.sale = 0
-  
     const responseCreateFactura = await crearElasticByType(data,"factura")
+
+    const productos = data.productos;
+    const promiSes = productos.map(async produc => {
+      return await updateQuantityById(produc._id, parseInt(produc.quantity));
+    })
+    await Promise.all(promiSes);
 
     dataMv.concepto = `Pago x Factura de Venta - ${responseCreateFactura.body._id} - ${data.payment_method}`
     await crearElasticByType(dataMv,"movimiento")
-
     return res
       .status(201)
       .json({ message: "Factura Creada."});

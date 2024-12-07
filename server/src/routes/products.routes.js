@@ -46,7 +46,7 @@ ProductosRouter.get("/pagination", async (req, res) => {
 
   console.log(req.query);
   try {
-    const productos = await buscarElasticByTypePagination("producto",req.query.per_page,req.query.page, req.query.search);
+    const productos = await buscarElasticByTypePagination("producto",req.query.per_page,req.query.page, req.query.search,'name.keyword');
     res.json(productos);
   } catch (error) {
     console.log(error);

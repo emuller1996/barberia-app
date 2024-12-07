@@ -82,7 +82,7 @@ ClientesRouter.get("/pagination", async (req, res) => {
 ClientesRouter.post("/", validateCreateCliente, async (req, res) => {
   try {
     const r = await crearElasticByType(req.body, "clientes");
-    return res.status(201).json({ message: "Cliente Creado.", barber: r });
+    return res.status(201).json({ message: "Cliente Creado.", cliente_id: r.body._id });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message });

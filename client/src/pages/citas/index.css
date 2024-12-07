@@ -1,25 +1,40 @@
 .fc-theme-standard {
 
-    border: 1px solid rgb(132 225 188);
+    border: 1px solid rgba(87, 87, 87, 0.37);
     padding: 1em;
     border-radius: 0.8em;
 }
 
 .fc-scrollgrid {
-    border: 1px solid rgb(132 225 188) !important;
+    border: 1px solid rgba(100, 100, 100, 0.514) !important;
     border-radius: 0.8em;
     overflow: hidden;
 
 }
 
+.fc-timegrid-slot {
+    height: 80px !important;
+    background-color: #fcfff68a;
+    border-color: rgba(157, 158, 158, 0.623) !important;
+}
+
 :root {
     --fc-today-bg-color: rgb(132 225 188/0.2);
 
-    --fc-event-bg-color: #82e7bd;
+    --fc-event-bg-color: #82e7bd36;
     --fc-event-border-color: #6fcab6;
     --fc-event-text-color: #000000;
+
+   
 }
-.react-select__input-container > input[type="text"]{
+
+.react-select__input-container>input[type="text"] {
     border: none !important;
-    box-shadow: none  !important;
-} 
+    box-shadow: none !important;
+}
+
+
+
+.fc-media-screen {
+    height: 100vh;
+}

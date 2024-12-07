@@ -15,12 +15,11 @@ const validateCreateAppointment = [
       exists: { errorMessage: "el total del servicio el obligatorio " },
       notEmpty: { errorMessage: "el total no puede ir vacio" },
     },
-    services: {
+    services_appointment: {
       exists: { errorMessage: "el precio del servicio el obligatorio " },
       notEmpty: { errorMessage: "services no puede ir vacio" },
     },
   }),
-
   (req, res, next) => {
     validateResult(req, res, next);
   },
