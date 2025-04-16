@@ -91,11 +91,6 @@ ClientesRouter.post("/", validateCreateCliente, async (req, res) => {
 
 ClientesRouter.post(
   "/import-excel",
-
-  fileUpload({
-    useTempFiles: true,
-    tempFileDir: "/tmp/",
-  }),
   async (req, res) => {
     try {
       const { file } = req.files;
@@ -103,7 +98,6 @@ ClientesRouter.post(
       if (!file) {
         return res.status(400).send("No se ha seleccionado ningún archivo");
       }
-
       const workbook = xlsx.readFile(file.tempFilePath);
       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
       const data = xlsx.utils.sheet_to_json(worksheet);
